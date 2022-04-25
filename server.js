@@ -9,11 +9,8 @@ import {handleImage,  handelApiCall } from './controllers/image.js';
  const db = knex ({
     client: 'pg',
     connection: {
-      host : 'postgresql-trapezoidal-15925',
-      port : 5432,
-      user : 'postgres',
-      password : 'test',
-      database : 'face_life_db'
+      host : process.env.DATABASE_URL,
+      ssl: true      
     }
 });
 
