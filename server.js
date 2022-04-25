@@ -9,7 +9,7 @@ import {handleImage,  handelApiCall } from './controllers/image.js';
  const db = knex ({
     client: 'pg',
     connection: {
-      host : '127.0.0.1',
+      host : 'postgresql-trapezoidal-15925',
       port : 5432,
       user : 'postgres',
       password : 'test',
