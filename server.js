@@ -6,18 +6,18 @@ import handleSignin from './controllers/signin.js';
 import handleProfile from './controllers/profile.js';
 import {handleImage,  handelApiCall } from './controllers/image.js';
 
- const db = knex ({
-    client: 'pg',
-    connection: {
-      connectionString : process.env.DATABASE_URL,
-      ssl: true      
-    }
-});
-
 const app = express();
 
 app.use(express.json());
 app.use(cors());
+
+const db = knex ({
+  client: 'pg',
+  connection: {
+    connectionString : process.env.DATABASE_URL,
+    ssl: true      
+  }
+});
 
 app.get('/',(req,res) => {
   res.send('gettting root');
