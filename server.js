@@ -22,15 +22,19 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
+app.get('/',(req,res) => {
+  console.log('gettting root');
+})
+
 app.post('/signin',(req,res) => {handleSignin(req,res,db)})
 app.post('/register', handleRegister(db))
 app.get('/profile/:id',(req,res) => {handleProfile(req,res,db)})
 app.put('/image',(req,res) => {handleImage(req,res,db)})
 app.post('/imageurl',(req,res) => {handelApiCall(req,res)})
 
-app.listen(3001,() => {
+app.listen(process.env.PORT,() => {
     //will run after listen happens
-    console.log('app is running');
+    console.log(`app is running on port: ${process.env.PORT}`);
 })
 
 // console.log(process.env);
