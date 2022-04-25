@@ -23,7 +23,7 @@ app.use(express.json());
 app.use(cors());
 
 app.get('/',(req,res) => {
-  console.log('gettting root');
+  res.send('gettting root');
 })
 
 app.post('/signin',(req,res) => {handleSignin(req,res,db)})
