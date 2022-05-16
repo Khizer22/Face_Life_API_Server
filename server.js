@@ -6,24 +6,23 @@ import handleSignin from './controllers/signin.js';
 import handleProfile from './controllers/profile.js';
 import {handleImage,  handelApiCall } from './controllers/image.js';
 
- const db = knex ({
-    client: 'pg',
-    connection: {
-      host : '127.0.0.1',
-      port : 5432,
-      user : 'postgres',
-      password : 'test',
-      database : 'face_life_db'
-    }
-});
-
 const app = express();
 
-app.use(express.json());
 app.use(cors());
+app.use(express.json());
+
+const db = knex ({
+  client: 'pg',
+  connection: {
+    connectionString : process.env.DATABASE_URL,
+    ssl: {
+      rejectUnauthorized: false
+    }      
+  }
+});
 
 app.get('/',(req,res) => {
-  console.log('gettting root');
+  res.send('gettting root');
 })
 
 app.post('/signin',(req,res) => {handleSignin(req,res,db)})
