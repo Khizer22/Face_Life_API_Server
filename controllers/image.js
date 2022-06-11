@@ -13,11 +13,27 @@ metadata.set("authorization", "Key 26f21ff3181144efb40c68fc2654f904");
 //     apiKey: '26f21ff3181144efb40c68fc2654f904'
 // });
 
-const handelApiCall = (req,res) => {
+const handelApiCall = (req,res,detection_type) => {
+    let MODEL_ID = null;
+
+    switch (detection_type) {
+        case 'face':
+            MODEL_ID = "a403429f2ddf4b49b307e318f00e528b";
+            break;
+
+        case 'general':
+            MODEL_ID = "aaa03c23b3724a16a56b629203edc62c";
+            break;
+    
+        default:
+            MODEL_ID = "a403429f2ddf4b49b307e318f00e528b";
+            break;
+    }
+
     stub.PostModelOutputs(
         {
             // This is the model ID of a publicly available General model. You may use any other public or custom model ID.
-            model_id: "a403429f2ddf4b49b307e318f00e528b",
+            model_id: MODEL_ID,
             inputs: [{data: {image: {url: req.body.input}}}]
         },
         metadata,
@@ -47,6 +63,10 @@ const handelApiCall = (req,res) => {
     //     res.json(data);
     // })
     // .catch(err => res.status(400).json('unable to work with API'));
+}
+
+const handleAPICallInfo = (req,res) => {
+
 }
 
 const handleImage = (req,res,db) => {

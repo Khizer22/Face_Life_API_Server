@@ -29,7 +29,8 @@ app.post('/signin',(req,res) => {handleSignin(req,res,db)})
 app.post('/register', handleRegister(db))
 app.get('/profile/:id',(req,res) => {handleProfile(req,res,db)})
 app.put('/image',(req,res) => {handleImage(req,res,db)})
-app.post('/imageurl',(req,res) => {handelApiCall(req,res)})
+app.post('/imageurl',(req,res) => {handelApiCall(req,res,'face')})
+app.post('/generalimageurl',(req,res) => {handelApiCall(req,res,'general')})
 
 app.listen(process.env.PORT,() => {
     //will run after listen happens
