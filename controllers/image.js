@@ -30,11 +30,18 @@ const handelApiCall = (req,res,detection_type) => {
             break;
     }
 
+    let mySource = {url: req.body.input};
+    //Check if fileupload
+    if (req.body.type === 'fileUpload'){
+        mySource = {base64: req.body.input};
+    }
+
     stub.PostModelOutputs(
+
         {
             // This is the model ID of a publicly available General model. You may use any other public or custom model ID.
             model_id: MODEL_ID,
-            inputs: [{data: {image: {url: req.body.input}}}]
+            inputs: [{data: {image: mySource}}]
         },
         metadata,
         (err, response) => {
