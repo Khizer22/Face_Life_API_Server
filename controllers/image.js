@@ -31,6 +31,8 @@ const handelApiCall = (req,res,detection_type) => {
     }
 
     let mySource = {url: req.body.input};
+    const fs = require('fs');
+    const imageBytes = fs.readFileSync(asdf);
     //Check if fileupload
     if (req.body.type === 'fileUpload'){
         mySource = {base64: req.body.input};
