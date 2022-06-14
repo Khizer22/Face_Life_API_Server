@@ -1,5 +1,6 @@
 // import Clarifai from 'clarifai';
 import {ClarifaiStub, grpc} from 'clarifai-nodejs-grpc';
+import * as fs from 'fs';
 
 // console.log(Clarifai); //get the model id
 
@@ -31,11 +32,11 @@ const handelApiCall = (req,res,detection_type) => {
     }
 
     let mySource = {url: req.body.input};
-    const fs = require('fs');
-    const imageBytes = fs.readFileSync(asdf);
+   
     //Check if fileupload
     if (req.body.type === 'fileUpload'){
-        mySource = {base64: req.body.input};
+        const imageBytes = fs.readFileSync(req.body.input);
+        mySource = {base64: imageBytes};
     }
 
     stub.PostModelOutputs(
