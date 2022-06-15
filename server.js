@@ -5,14 +5,16 @@ import handleRegister from './controllers/register.js';
 import handleSignin from './controllers/signin.js';
 import handleProfile from './controllers/profile.js';
 import {handleImage,  handelApiCall } from './controllers/image.js';
-import fileUpload from 'express-fileupload';
+// import fileUpload from 'express-fileupload';
+import multer from 'multer';
 
 const app = express();
+const upload = multer();
 
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(fileUpload());
+// app.use(fileUpload());
 
 //TEST
 app.options('*',cors());
@@ -40,7 +42,7 @@ app.get('/',(req,res) => {
 })
 
 app.get('/profile/:id',(req,res) => {handleProfile(req,res,db)})
-app.put('/image',(req,res) => {handleImage(req,res,db)})
+app.put('/image',upload.none(),(req,res) => {handleImage(req,res,db)})
 app.post('/imageurl',(req,res) => {handelApiCall(req,res,'face')})
 app.post('/generalimageurl',(req,res) => {handelApiCall(req,res,'general')})
 app.post('/signin',(req,res) => {handleSignin(req,res,db)})
