@@ -37,7 +37,7 @@ const handelApiCall = (req,res,detection_type) => {
     if (req.file !== null)
         mySource = {base64: req.file.buffer};
     else
-        mySource = {url: req.body.url};
+        mySource = {url: req.body.input};
 
     stub.PostModelOutputs(
 
