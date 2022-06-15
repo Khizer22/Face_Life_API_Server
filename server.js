@@ -9,11 +9,16 @@ import {handleImage,  handelApiCall } from './controllers/image.js';
 import multer from 'multer';
 
 const app = express();
-const upload = multer();
+const upload = multer({
+  limits: {
+    fileSize: 4 * 1024 * 1024,
+  }
+});
 
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(express.static('public'));
 // app.use(fileUpload());
 
 //TEST
@@ -43,7 +48,7 @@ app.get('/',(req,res) => {
 
 app.get('/profile/:id',(req,res) => {handleProfile(req,res,db)})
 app.put('/image',(req,res) => {handleImage(req,res,db)})
-app.post('/imageurl',upload.single('myfile'),(req,res) => {handelApiCall(req,res,'face')})
+app.post('/imageurl',upload.single('myimage'),(req,res) => {handelApiCall(req,res,'face')})
 app.post('/generalimageurl',(req,res) => {handelApiCall(req,res,'general')})
 app.post('/signin',(req,res) => {handleSignin(req,res,db)})
 app.post('/register', handleRegister(db))
