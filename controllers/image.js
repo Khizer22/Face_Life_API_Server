@@ -33,11 +33,11 @@ const handelApiCall = (req,res,detection_type) => {
 
     let mySource = {url: req.body.input};
    
-    //Check if fileupload
-    // if (req.body.type === 'fileUpload'){
-    //     const imageBytes = fs.readFileSync(req.body.input);
-    //     mySource = {base64: imageBytes};
-    // }
+    // Check if fileupload
+    if (req.body.type === 'fileUpload'){
+        const imageBytes = fs.readFileSync(req.body.input);
+        mySource = {base64: imageBytes};
+    }
 
     stub.PostModelOutputs(
 
