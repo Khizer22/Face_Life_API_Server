@@ -9,7 +9,8 @@ import {handleImage,  handelApiCall } from './controllers/image.js';
 const app = express();
 
 app.use(cors());
-app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+// app.use(express.json());
 
 //TEST
 app.options('*',cors());
