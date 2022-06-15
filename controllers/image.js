@@ -16,7 +16,7 @@ metadata.set("authorization", "Key 26f21ff3181144efb40c68fc2654f904");
 
 const handelApiCall = (req,res,detection_type,upload) => {
 
-    // upload.single('myimage');
+    upload.single('myimage');
 
     let MODEL_ID = null;
 
@@ -34,14 +34,14 @@ const handelApiCall = (req,res,detection_type,upload) => {
             break;
     }
 
-    console.log(req.body);
+    // console.log(req.body);
 
     let mySource = null;
     // (req.file !== null)? mySource = {base64: req.file.buffer} : mySource = {url: req.body.input};
     // if (req.file !== null)
-    //     mySource = {base64: req.file.buffer};
+        mySource = {base64: req.file.buffer};
     // else
-        mySource = {url: req.body.input};
+        // mySource = {url: req.body.input};
 
     stub.PostModelOutputs(
 
