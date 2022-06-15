@@ -31,9 +31,10 @@ const handelApiCall = (req,res,detection_type) => {
             break;
     }
 
-    console.log(req.file);
+    console.log(req);
 
     let mySource = null;
+    // (req.file !== null)? mySource = {base64: req.file.buffer} : mySource = {url: req.body.input};
     if (req.file !== null)
         mySource = {base64: req.file.buffer};
     else
