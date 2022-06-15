@@ -7,13 +7,9 @@ import handleProfile from './controllers/profile.js';
 import {handleImage,  handelApiCall } from './controllers/image.js';
 // import fileUpload from 'express-fileupload';
 import multer from 'multer';
-import path from 'path';
 
 const app = express();
-const upload = multer({
-  dest: "/files"
-  // you might also want to set some limits: https://github.com/expressjs/multer#limits
-});
+const upload = multer();
 
 app.use(cors());
 app.use(express.json());
@@ -41,11 +37,13 @@ const db = knex ({
   }
 });
 
-app.get('/',express.static(path.join(__dirname, "./public")));
+app.get('/',(req,res) => {
+  res.send('gettting root');
+})
 
 app.get('/profile/:id',(req,res) => {handleProfile(req,res,db)})
 app.put('/image',(req,res) => {handleImage(req,res,db)})
-app.post('/imageurl',(req,res) => {handelApiCall(req,res,'face')})
+app.post('/imageurl',upload.single('myfile'),(req,res) => {handelApiCall(req,res,'face')})
 app.post('/generalimageurl',(req,res) => {handelApiCall(req,res,'general')})
 app.post('/signin',(req,res) => {handleSignin(req,res,db)})
 app.post('/register', handleRegister(db))
