@@ -39,7 +39,7 @@ const handelApiCall = (req,res,detection_type) => {
     console.log(req.body);
     console.log(req.file);
     // const imageBytes = fs.readFileSync(req.file.buffer);
-    // mySource = {base64: imageBytes};
+    mySource = {base64: req.file.buffer};
     // }
 
     stub.PostModelOutputs(
