@@ -35,7 +35,7 @@ const handelApiCall = (req,res,detection_type) => {
    
     // Check if fileupload
     // if (req.body.type === 'fileUpload'){
-        const imageBytes = fs.readFileSync(req.body);
+        const imageBytes = fs.readFileSync('https://picsum.photos/id/237/200/300');
         mySource = {base64: imageBytes};
     // }
 
