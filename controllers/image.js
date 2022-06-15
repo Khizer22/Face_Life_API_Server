@@ -31,16 +31,13 @@ const handelApiCall = (req,res,detection_type) => {
             break;
     }
 
-    let mySource = {url: 'https://picsum.photos/200/300'};
-   
-    // Check if fileupload
-    // if (req.body.type === 'fileUpload'){
-    console.log("BANANAS");
-    console.log(req.body);
     console.log(req.file);
-    // const imageBytes = fs.readFileSync(req.file.buffer);
-    mySource = {base64: req.file.buffer};
-    // }
+    
+    let mySource = null;
+    if (req.file)
+        mySource = {base64: req.file.buffer};
+    else
+        mySource = {url: req.body.url};
 
     stub.PostModelOutputs(
 
