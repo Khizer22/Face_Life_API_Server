@@ -14,7 +14,10 @@ metadata.set("authorization", "Key 26f21ff3181144efb40c68fc2654f904");
 //     apiKey: '26f21ff3181144efb40c68fc2654f904'
 // });
 
-const handelApiCall = (req,res,detection_type) => {
+const handelApiCall = (req,res,detection_type,upload) => {
+
+    // upload.single('myimage');
+
     let MODEL_ID = null;
 
     switch (detection_type) {
