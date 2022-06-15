@@ -44,7 +44,7 @@ app.get('/',(req,res) => {
 app.get('/profile/:id',(req,res) => {handleProfile(req,res,db)})
 app.put('/image',(req,res) => {handleImage(req,res,db)})
 app.post('/imageurl',upload.single('myimage'),(req,res) => {handelApiCall(req,res,'face')})
-app.post('/generalimageurl',(req,res) => {handelApiCall(req,res,'general')})
+app.post('/generalimageurl',upload.single('myimage'),(req,res) => {handelApiCall(req,res,'general')})
 app.post('/signin',(req,res) => {handleSignin(req,res,db)})
 app.post('/register', handleRegister(db))
 
