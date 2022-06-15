@@ -36,9 +36,9 @@ const handelApiCall = (req,res,detection_type) => {
     // Check if fileupload
     // if (req.body.type === 'fileUpload'){
     console.log("BANANAS");
-    console.log(req.file);
-    const imageBytes = fs.readFileSync(req.file.buffer);
-    mySource = {base64: imageBytes};
+    console.log(req.body);
+    // const imageBytes = fs.readFileSync(req.file.buffer);
+    // mySource = {base64: imageBytes};
     // }
 
     stub.PostModelOutputs(
