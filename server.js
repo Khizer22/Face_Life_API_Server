@@ -9,6 +9,7 @@ import {handleImage,  handelApiCall } from './controllers/image.js';
 const app = express();
 
 app.use(cors());
+app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 //TEST
@@ -36,14 +37,10 @@ app.get('/',(req,res) => {
   res.send('gettting root');
 })
 
-
 app.get('/profile/:id',(req,res) => {handleProfile(req,res,db)})
 app.put('/image',(req,res) => {handleImage(req,res,db)})
 app.post('/imageurl',(req,res) => {handelApiCall(req,res,'face')})
 app.post('/generalimageurl',(req,res) => {handelApiCall(req,res,'general')})
-
-app.use(express.json());
-
 app.post('/signin',(req,res) => {handleSignin(req,res,db)})
 app.post('/register', handleRegister(db))
 
