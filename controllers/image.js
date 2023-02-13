@@ -19,7 +19,8 @@ const handelApiCall = (req,res,detection_type) => {
 
     switch (detection_type) {
         case 'face':
-            MODEL_ID = "a403429f2ddf4b49b307e318f00e528b";
+            // MODEL_ID = "a403429f2ddf4b49b307e318f00e528b";
+            MODEL_ID = "face-detection";
             break;
 
         case 'general':
